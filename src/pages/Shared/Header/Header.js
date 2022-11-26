@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
     const menuitems = <>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/blog">Blog</Link></li>
-        <li><Link to="/myproducts">My Products</Link></li>
-        <li><Link to="/login">Login</Link></li>
+        <li className='font-semibold'><Link to="/">Home</Link></li>
+        <li className='font-semibold'><Link to="/blog">Blog</Link></li>
+        <li className='font-semibold'><Link to="/myproducts">My Products</Link></li>
+        <li className='font-semibold'><Link to="/login">Login</Link></li>
     </>
     return (
         <div className="navbar bg-base-100">
@@ -19,7 +19,7 @@ const Header = () => {
                         {menuitems}
                     </ul>
                 </div>
-                <Link to="/" className="btn btn-ghost normal-case text-2xl text-purple-500 font-bold">Bike Hunt</Link>
+                <Link to="/" className="btn btn-ghost normal-case text-2xl text-purple-900 font-bold">Bike Hunt</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
