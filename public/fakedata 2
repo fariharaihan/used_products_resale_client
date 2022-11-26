@@ -1,0 +1,17 @@
+[
+    {
+        "category_id": "01",
+        "Name": "Sports Bike",
+        "image": "https://financialexpresswpcontent.s3.amazonaws.com/uploads/2020/08/yamaha-r15-dark-knight.jpg"
+    },
+    {
+        "category_id": "02",
+        "Name": "Carborator Bike",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSItjShuR8KMajvKHOSBKvHRpFS5ZdBtjqUpQ&usqp=CAU"
+    },
+    {
+        "category_id": "03",
+        "Name": "Scooty",
+        "image": "https://media.zigcdn.com/media/model/2021/Sep/yamaha-aerox-155-jk-right-side-view_360x240.jpg"
+    }
+]
