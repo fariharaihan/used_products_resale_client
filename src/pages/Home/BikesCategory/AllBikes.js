@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import BikeCategoryCard from './BikeCategoryCard';
+import BookingModal from './BookingModal';
 
 const AllBikes = () => {
     const data = useLoaderData()
-    console.log(data)
+    // console.log(data)
+    const [bookingBike, setBookingBike] = useState([null])
 
 
     return (
@@ -14,9 +16,17 @@ const AllBikes = () => {
                     data?.map(bikeCard => <BikeCategoryCard
                         key={bikeCard._id}
                         bikeCard={bikeCard}
+                        setBookingBike={setBookingBike}
                     ></BikeCategoryCard>)
                 }
             </div>
+            {
+                bookingBike &&
+                <BookingModal
+                    bookingBike={bookingBike}
+                    setBookingBike={setBookingBike}
+                ></BookingModal>
+            }
         </div>
     );
 };
