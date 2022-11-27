@@ -1,17 +1,27 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const BikesCategory = () => {
-    const [bikesData, setBikesData] = useState([]);
+    // const [bikesData, setBikesData] = useState([]);
 
-    useEffect(() => {
-        fetch('http://localhost:5000/bikeCategoryCollection')
-            .then(res => res.json())
-            .then(data => setBikesData(data))
+    const { data: bikesData = [] } = useQuery({
+        queryKey: ['bikesData'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/bikeCategoryCollection')
+            const data = await res.json();
+            return (data)
+        }
     })
 
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/bikeCategoryCollection')
+    //         .then(res => res.json())
+    //         .then(data => setBikesData(data))
+    // })
+
     return (
-        <div className='mt-4'>
+        <section className='mt-4'>
             <div className='text-center'>
                 <h2 className='text-4xl font-bold text-purple-900'>All Bikes</h2>
             </div>
@@ -27,7 +37,7 @@ const BikesCategory = () => {
 
                 }
             </div>
-        </div>
+        </section>
     );
 };
 
