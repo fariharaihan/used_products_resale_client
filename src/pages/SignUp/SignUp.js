@@ -8,11 +8,11 @@ const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm()
     const { createUser, loading } = useContext(AuthContext)
 
-    // if (loading) {
-    //     return <div className='flex justify-center'>
-    //         <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-violet-900"></div>
-    //     </div>
-    // }
+    if (loading) {
+        return <div className='flex justify-center'>
+            <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-violet-900"></div>
+        </div>
+    }
 
     const handleSignUp = (data) => {
         console.log(data)
@@ -57,7 +57,7 @@ const SignUp = () => {
                     </div>
                     <input className='btn  w-full mt-4' value='SignUp' type="submit" />
                 </form>
-                <p>Already have an account <Link className='text-secondary' to='/login'>Please Login</Link></p>
+                <p>Already have an account <Link className='text-secondary font-bold' to='/login'>Please Login</Link></p>
                 <div className="divider">OR</div>
                 <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
             </div>

@@ -1,12 +1,48 @@
-import React from 'react';
+import { GoogleAuthProvider } from 'firebase/auth';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const { login, providerLogin, loading } = useContext(AuthContext)
+    const [loginError, setLoginError] = useState('')
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    if (loading) {
+        return <div className='flex justify-center'>
+            <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-violet-900"></div>
+        </div>
+    }
+
+    const googleProvider = new GoogleAuthProvider();
+
+    const handleGoogleSignIn = () => {
+        providerLogin(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+                // navigate(from, { replace: true })
+            })
+            .catch(error => console.error(error))
+    }
 
     const handleLogin = data => {
         console.log(data)
+        setLoginError('')
+        login(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+            })
+            .catch(error => {
+                console.error(error.message)
+                setLoginError(error.message)
+            })
+
+
     }
     return (
         <div className='h-[800px] flex justify-center items-center'>
@@ -35,10 +71,13 @@ const Login = () => {
 
                     </div>
                     <input className='btn w-full' value='Login' type="submit" />
-                    <p>Visit to Bike Hunt <Link className='text-secondary' to='/signup'>Create a new account</Link></p>
-                    <div className="divider">OR</div>
-                    <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+                    <div>
+                        {loginError && <p className='text-red-600'>{loginError}</p>}
+                    </div>
                 </form>
+                <p>Visit to Bike Hunt <Link className='text-secondary font-bold' to='/signup'>Create a new account</Link></p>
+                <div className="divider">OR</div>
+                <button onClick={handleGoogleSignIn} className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
             </div>
         </div>
     );
