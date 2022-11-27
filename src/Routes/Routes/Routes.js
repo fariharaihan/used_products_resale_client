@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../layout/Main";
+import DashBoard from "../../pages/DashBoard/DashBoard";
 
 import AllBikes from "../../pages/Home/BikesCategory/AllBikes";
 import Home from "../../pages/Home/Home/Home";
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:5000/allbikes/${params.id}`)
             }
         ]
+    },
+    {
+        path: '/dashboard',
+        element: <DashBoard></DashBoard>
     },
     {
         path: '*',

@@ -1,12 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 
 const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm()
-    const { createUser, loading } = useContext(AuthContext)
+    const { createUser, updateUser, loading } = useContext(AuthContext);
+    const [signUpError, setSignUpError] = useState('');
 
     if (loading) {
         return <div className='flex justify-center'>
@@ -16,13 +18,24 @@ const SignUp = () => {
 
     const handleSignUp = (data) => {
         console.log(data)
+        setSignUpError('')
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 console.log(user)
+                toast('User Created Successfully')
+                const userInfo = {
+                    displayName: data.name
+                }
+                updateUser(userInfo)
+                    .then(() => { })
+                    .catch(err => console.log(err))
 
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                console.error(err)
+                setSignUpError(err.message)
+            });
     }
 
 
@@ -42,7 +55,7 @@ const SignUp = () => {
                         <label className="label"><span className="label-text">Email</span></label>
                         <input type="email" {...register('email',
                             { required: true }
-                        )} className="input input-bordered w-full max-w-xs" />
+                        )} className="input input-bordered w-full max-w-xs" required />
                         {errors.email && <p className='text-red-600'>{errors.email?.message}</p>}
                     </div>
                     <div className="form-control w-full max-w-xs">
@@ -56,6 +69,7 @@ const SignUp = () => {
 
                     </div>
                     <input className='btn  w-full mt-4' value='SignUp' type="submit" />
+                    {signUpError && <p className='text-red-600'>{signUpError}</p>}
                 </form>
                 <p>Already have an account <Link className='text-secondary font-bold' to='/login'>Please Login</Link></p>
                 <div className="divider">OR</div>
