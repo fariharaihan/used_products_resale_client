@@ -17,6 +17,8 @@ const Login = () => {
         </div>
     }
 
+    const from = location.state?.from?.pathname || '/';
+
     const googleProvider = new GoogleAuthProvider();
 
     const handleGoogleSignIn = () => {
@@ -24,7 +26,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
-                // navigate(from, { replace: true })
+                navigate(from, { replace: true })
             })
             .catch(error => console.error(error))
     }
