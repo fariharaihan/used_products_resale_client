@@ -3,13 +3,20 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useToken from '../../hooks/UseToken';
 
 
 const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm()
     const { createUser, updateUser, loading } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
+    const [createdUserEmail, setCreatedUserEmail] = useState('');
+    const [token] = useToken(createdUserEmail);
     const navigate = useNavigate();
+
+    if (token) {
+        navigate('/')
+    }
 
     if (loading) {
         return <div className='flex justify-center'>
@@ -52,16 +59,28 @@ const SignUp = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log('save User', data)
-                navigate('/')
+                setCreatedUserEmail(email)
+                // console.log('save User', data)
+
             })
     }
 
+    // const getUserToken = email => {
+    //     fetch(`http://localhost:5000/jwt?email=${email}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             if (data.accessToken) {
+    //                 localStorage.setItem('accessToken', data.accessToken)
+    //                 navigate('/')
+    //             }
+    //         })
+    // }
+
 
     return (
-        <div className='h-[800px] flex justify-center items-center'>
+        <div className='h-[800px] flex justify-center '>
             <div className='w-96 p-7'>
-                <h2 className='text-xl'>SignUp</h2>
+                <h2 className='text-4xl font-semibold text-center'>SignUp</h2>
                 <form onSubmit={handleSubmit(handleSignUp)}>
                     <div className="form-control w-full max-w-xs">
                         <label className="label"><span className="label-text">Name</span></label>

@@ -12,15 +12,22 @@ const MyOrder = () => {
     const { data: orders = [] } = useQuery({
         queryKey: ['orders', user?.email],
         queryFn: async () => {
-            const res = await fetch(url);
+            const res = await fetch(url, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
+
             const data = await res.json();
+            console.log(data)
             return data;
+
         }
     })
 
     return (
         <div>
-            <h3 className='text-3xl mb-5'>My Order</h3>
+            <h3 className='text-3xl mb-5'>My Orders</h3>
             <div className="overflow-x-auto">
                 <table className="table w-full">
 

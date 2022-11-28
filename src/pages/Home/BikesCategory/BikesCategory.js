@@ -21,9 +21,10 @@ const BikesCategory = () => {
     // })
 
     return (
-        <section className='mt-4'>
+        <section className='my-4'>
             <div className='text-center'>
                 <h2 className='text-4xl font-bold text-purple-900'>All Bikes</h2>
+                <p className='text-xl'>You can sellect your favourite one.</p>
             </div>
             <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-center my-10 '>
                 {

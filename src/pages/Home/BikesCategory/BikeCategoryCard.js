@@ -10,8 +10,8 @@ const BikeCategoryCard = ({ bikeCard, setBookingBike }) => {
             <figure><img className='px-5 pt-10' src={image_url} alt="Shoes" /></figure>
             <div className="card-body  items-center text-center">
                 <h2 className="card-title">{title}</h2>
-                <p>Original price: {original_price}</p>
-                <p>Resale price: {resale_price}</p>
+                <p>Original price: ${original_price}</p>
+                <p>Resale price: ${resale_price}</p>
                 <p>Year of use: {uses_time}</p>
                 <p>Post date: {time}</p>
                 <p>Location: {location}</p>

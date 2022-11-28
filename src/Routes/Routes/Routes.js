@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashBoardLayout from "../../layout/DashBoardLayout";
 import Main from "../../layout/Main";
+import Blog from "../../pages/Blog/Blog";
 import DashBoard from "../../pages/DashBoard/DashBoard/DashBoard";
 import MyOrder from "../../pages/DashBoard/MyOrder/MyOrder";
 
@@ -8,6 +9,7 @@ import MyOrder from "../../pages/DashBoard/MyOrder/MyOrder";
 import AllBikes from "../../pages/Home/BikesCategory/AllBikes";
 import Home from "../../pages/Home/Home/Home";
 import Login from "../../pages/Login/Login";
+import NotFound from "../../pages/NotFound/NotFound";
 import SignUp from "../../pages/SignUp/SignUp";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
@@ -24,6 +26,10 @@ const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login></Login>
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
             },
             {
                 path: '/signup',
@@ -48,7 +54,7 @@ const router = createBrowserRouter([
     },
     {
         path: '*',
-        element: <div className='text-white font-semibold text-5xl'>This page is not found</div>
+        element: <NotFound></NotFound>
     }
 ])
 export default router;
