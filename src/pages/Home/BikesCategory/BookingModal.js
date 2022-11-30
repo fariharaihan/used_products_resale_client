@@ -4,7 +4,7 @@ import { AuthContext } from '../../../contexts/AuthProvider';
 
 const BookingModal = ({ bookingBike, setBookingBike }) => {
     const { title, resale_price } = bookingBike;
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
 
     const handleBooking = event => {
         event.preventDefault();
@@ -21,7 +21,7 @@ const BookingModal = ({ bookingBike, setBookingBike }) => {
             location
         }
 
-        fetch('http://localhost:5000/orders', {
+        fetch('https://y-bay-pi.vercel.app/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -2,9 +2,11 @@ import { createBrowserRouter } from "react-router-dom";
 import DashBoardLayout from "../../layout/DashBoardLayout";
 import Main from "../../layout/Main";
 import Blog from "../../pages/Blog/Blog";
+import AddAProduct from "../../pages/DashBoard/AddAProduct/AddAProduct";
 import AllUsers from "../../pages/DashBoard/AllUsers/AllUsers";
 import DashBoard from "../../pages/DashBoard/DashBoard/DashBoard";
 import MyOrder from "../../pages/DashBoard/MyOrder/MyOrder";
+import MyProducts from "../../pages/DashBoard/MyProducts/MyProducts";
 
 
 import AllBikes from "../../pages/Home/BikesCategory/AllBikes";
@@ -40,7 +42,7 @@ const router = createBrowserRouter([
             {
                 path: '/allbikes/:id',
                 element: <PrivateRoute><AllBikes></AllBikes></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/allbikes/${params.id}`)
+                loader: ({ params }) => fetch(`https://y-bay-pi.vercel.app/allbikes/${params.id}`)
             }
         ]
     },
@@ -51,6 +53,14 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <MyOrder></MyOrder>
+            },
+            {
+                path: '/dashboard/addaproduct',
+                element: <AddAProduct></AddAProduct>
+            },
+            {
+                path: '/dashboard/myproducts',
+                element: <MyProducts></MyProducts>
             },
             {
                 path: '/dashboard/allUsers',

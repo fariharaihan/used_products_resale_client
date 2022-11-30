@@ -7,14 +7,13 @@ export const AuthContext = createContext();
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
     const providerLogin = (provider) => {
         setLoading(true)
         return signInWithPopup(auth, provider);
     }
-
 
     const createUser = (email, password) => {
         setLoading(true)
@@ -27,14 +26,13 @@ const AuthProvider = ({ children }) => {
     }
 
     const updateUser = (userInfo) => {
-        return updateProfile(auth.currentUser, userInfo)
+        return updateProfile(auth.currentUser, userInfo);
     }
 
     const logOut = () => {
         setLoading(true)
-        return signOut(auth)
+        return signOut(auth);
     }
-
 
 
     useEffect(() => {

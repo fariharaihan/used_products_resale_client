@@ -7,7 +7,7 @@ import useToken from '../../hooks/UseToken';
 
 
 const SignUp = () => {
-    const { register, formState: { errors }, handleSubmit } = useForm()
+    const { register, formState: { errors }, handleSubmit } = useForm();
     const { createUser, updateUser, loading } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
     const [createdUserEmail, setCreatedUserEmail] = useState('');
@@ -25,7 +25,7 @@ const SignUp = () => {
     }
 
     const handleSignUp = (data) => {
-        console.log(data)
+        console.log(data);
         setSignUpError('')
         createUser(data.email, data.password)
             .then(result => {
@@ -50,7 +50,7 @@ const SignUp = () => {
 
     const saveUser = (name, email) => {
         const user = { name, email };
-        fetch('http://localhost:5000/users', {
+        fetch('https://y-bay-pi.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -64,18 +64,6 @@ const SignUp = () => {
 
             })
     }
-
-    // const getUserToken = email => {
-    //     fetch(`http://localhost:5000/jwt?email=${email}`)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             if (data.accessToken) {
-    //                 localStorage.setItem('accessToken', data.accessToken)
-    //                 navigate('/')
-    //             }
-    //         })
-    // }
-
 
     return (
         <div className='h-[800px] flex justify-center '>
@@ -101,12 +89,11 @@ const SignUp = () => {
                         <input type="password" {...register('password', {
                             required: "password is require",
                             minLength: { value: 6, message: "password must be 6 charecters long" },
-                            // pattern: { value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: " password mustbe strong" }
                         })} className="input input-bordered w-full max-w-xs" />
                         {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
 
                     </div>
-                    <input className='btn  w-full mt-4' value='SignUp' type="submit" />
+                    <input className='btn btn-primary w-full mt-4' value='SignUp' type="submit" />
                     {signUpError && <p className='text-red-600'>{signUpError}</p>}
                 </form>
                 <p>Already have an account <Link className='text-secondary font-bold' to='/login'>Please Login</Link></p>

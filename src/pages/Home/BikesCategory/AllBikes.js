@@ -4,9 +4,9 @@ import BikeCategoryCard from './BikeCategoryCard';
 import BookingModal from './BookingModal';
 
 const AllBikes = () => {
-    const data = useLoaderData()
+    const data = useLoaderData();
     // console.log(data)
-    const [bookingBike, setBookingBike] = useState([null])
+    const [bookingBike, setBookingBike] = useState([null]);
 
 
     return (

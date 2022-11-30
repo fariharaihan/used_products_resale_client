@@ -8,14 +8,14 @@ const BikesCategory = () => {
     const { data: bikesData = [] } = useQuery({
         queryKey: ['bikesData'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/bikeCategoryCollection')
+            const res = await fetch('https://y-bay-pi.vercel.app/bikeCategoryCollection')
             const data = await res.json();
-            return (data)
+            return (data);
         }
     })
 
     // useEffect(() => {
-    //     fetch('http://localhost:5000/bikeCategoryCollection')
+    //     fetch('https://y-bay-pi.vercel.app/bikeCategoryCollection')
     //         .then(res => res.json())
     //         .then(data => setBikesData(data))
     // })
@@ -35,7 +35,6 @@ const BikesCategory = () => {
                             </button>
                         </Link>
                     </div>)
-
                 }
             </div>
         </section>

@@ -1,17 +1,16 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useToaster } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useToken from '../../hooks/UseToken';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { login, providerLogin, loading } = useContext(AuthContext)
-    const [loginError, setLoginError] = useState('')
-    const [loginUserEmail, setLoginUserEmail] = useState('')
-    const [token] = useToken(loginUserEmail)
+    const { login, providerLogin, loading } = useContext(AuthContext);
+    const [loginError, setLoginError] = useState('');
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = useToken(loginUserEmail);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -46,6 +45,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
+                navigate(from, { replace: true })
                 setLoginUserEmail(data.email)
 
             })
@@ -53,9 +53,8 @@ const Login = () => {
                 console.error(error.message)
                 setLoginError(error.message)
             })
-
-
     }
+
     return (
         <div className='h-[800px] flex justify-center items-center'>
             <div className='w-96 p-7'>
@@ -82,7 +81,7 @@ const Login = () => {
                         <label className="label"><span className="label-text">Forget Password?</span></label>
 
                     </div>
-                    <input className='btn w-full' value='Login' type="submit" />
+                    <input className='btn btn-primary w-full' value='Login' type="submit" />
                     <div>
                         {loginError && <p className='text-red-600'>{loginError}</p>}
                     </div>

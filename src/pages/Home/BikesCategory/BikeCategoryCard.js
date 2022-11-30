@@ -4,7 +4,8 @@ const BikeCategoryCard = ({ bikeCard, setBookingBike }) => {
     const { image_url,
         title, location,
         time, original_price,
-        resale_price, uses_time, seller_name } = bikeCard
+        resale_price, uses_time, seller_name } = bikeCard;
+
     return (
         <div className="card bg-base-100 shadow-xl">
             <figure><img className='px-5 pt-10' src={image_url} alt="Shoes" /></figure>
@@ -16,8 +17,6 @@ const BikeCategoryCard = ({ bikeCard, setBookingBike }) => {
                 <p>Post date: {time}</p>
                 <p>Location: {location}</p>
                 <p>Seller name: {seller_name}</p>
-
-
             </div>
             <div className='card-actions justify-center mb-5'>
                 <label
